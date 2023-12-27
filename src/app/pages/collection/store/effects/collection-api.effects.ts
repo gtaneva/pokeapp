@@ -7,37 +7,37 @@ import { CollectionService } from "../../services/collection.service";
 
 @Injectable()
 export class CollectionApiEffects {
-	// public loadArticles$ = createEffect(() =>
-	// 	this.actions$.pipe(
-	// 		ofType(collectionApiActions.getPokemons),
-	// 		switchMap(() =>
-	// 			this.articlesApiService.retrieveArticles().pipe(
-	// 				map((pokemons) =>
-    //                 collectionApiActions.loadPokemonsSuccess({ pokemons })
-	// 				),
-	// 				catchError((error: HttpErrorResponse) =>
-	// 					of(collectionApiActions.loadPokemonsFailure(error.message))
-	// 				)
-	// 			)
-	// 		)
-	// 	)
-	// );
+	public loadArticles$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(collectionApiActions.getPokemons),
+			switchMap(() =>
+				this.collectionApiService.getPokemons().pipe(
+					map((pokemons) =>
+                    collectionApiActions.loadPokemonsSuccess({ pokemons })
+					),
+					catchError((error: HttpErrorResponse) =>
+						of(collectionApiActions.loadPokemonsFailure(error.message))
+					)
+				)
+			)
+		)
+	);
 
-	// public getSingleArticleById$ = createEffect(() =>
-	// 	this.actions$.pipe(
-	// 		ofType(articlesApiActions.getArticleById),
-	// 		switchMap((action) =>
-	// 			this.articlesApiService.retrieveArticle(action.id).pipe(
-	// 				map((article) =>
-	// 					articlesApiActions.getArticleByIdSuccess({ article })
-	// 				),
-	// 				catchError((error: HttpErrorResponse) =>
-	// 					of(articlesApiActions.getArticleByIdFailure(error.message))
-	// 				)
-	// 			)
-	// 		)
-	// 	)
-	// );
+	public getSinglePokemonItemByName$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(collectionApiActions.getPokemonByName),
+			switchMap((action) =>
+				this.collectionApiService.getPokemonByName(action.name).pipe(
+					map((singlePokemonItem) =>
+					collectionApiActions.getPokemonByNameSuccess({ singlePokemonItem })
+					),
+					catchError((error: HttpErrorResponse) =>
+						of(collectionApiActions.getPokemonByNameFailure(error.message))
+					)
+				)
+			)
+		)
+	);
 
 	// public editArticle$ = createEffect(() =>
 	// 	this.actions$.pipe(

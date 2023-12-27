@@ -1,17 +1,18 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { collectionApiActions } from '../actions';
+import {pokemonCollection, pokemonDescription} from '../../models/collection.models';
 
-export interface PokemonCollectionState extends EntityState<Pokemon> {
+export interface PokemonCollectionState{
+	pokeCollection: pokemonCollection['results'];
+	pokemonFullDescriptionCollection: pokemonDescription[];
 	error?: string;
-	articlesLoaded: boolean;
 }
 
-export const adapter: EntityAdapter<Article> = createEntityAdapter<Article>();
 
-export const initialState: PokemonCollectionState = adapter.getInitialState({
-	articlesLoaded: false,
-	message: '',
+export const initialState: PokemonCollectionState = ({
+	pokeCollection: [],
+	pokemonFullDescriptionCollection: []
 });
 
 export const reducer = createReducer(
@@ -19,20 +20,18 @@ export const reducer = createReducer(
 	on(
 		collectionApiActions.loadPokemonsSuccess,
 		(state: PokemonCollectionState, action) => {
-			return adapter.setAll(action.articles.data.articles, {
-                ...state
-            });
+			return { ...state, pokeCollection: action.pokemons.results };
 		}
 	),
 	on(
-		articlesSharedActions.addArticleFailure,
+		collectionApiActions.getPokemonByNameSuccess,
 		(state: PokemonCollectionState, action) => {
-			return {
-				...state,
-				error: action.error,
+			return { 
+				...state, 
+				pokemonFullDescriptionCollection: [...state.pokemonFullDescriptionCollection, action.singlePokemonItem]
 			};
 		}
-	)
+	),
 );
 
-export const { selectAll } = adapter.getSelectors();
+export const selectAll  = (state: PokemonCollectionState) => state.pokeCollection;
