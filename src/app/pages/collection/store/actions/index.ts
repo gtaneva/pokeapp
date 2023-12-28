@@ -1,3 +1,3 @@
-import * as collectionApiActions from './collection-api.action';
+import * as collectionApiActions from './collection-api.actions';
 
 export {collectionApiActions}

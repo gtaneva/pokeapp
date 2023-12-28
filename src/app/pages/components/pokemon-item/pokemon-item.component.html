@@ -1,9 +1,7 @@
-<nz-card style="width:300px;" [nzActions]="[actionSetting]">
-    <nz-card-meta
-      nzTitle="Card title"
-      nzDescription="This is the description"
-    ></nz-card-meta>
-  </nz-card>
-  <ng-template #actionSetting>
-    <span nz-icon nzType="setting"></span>
+<a routerLink="pokemon/pokemonName">Item</a>
+<nz-card nzHoverable style="width:140px" [nzCover]="coverTemplate" class="card-wrap">
+  <nz-card-meta nzTitle="{{pokemonName}}"></nz-card-meta>
+</nz-card>
+<ng-template #coverTemplate>
+  <img alt="pokemonName" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemonId}}.png" />
 </ng-template>

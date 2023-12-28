@@ -10,6 +10,11 @@ const routes: Routes = [
 			import('./pages/collection/collection.module').then((m) => m.CollectionModule)
   },
   {
+    path: "pokemon/:name",
+    loadChildren: () =>
+			import('./pages/pokemon-detail/pokemon-detail.module').then((m) => m.PokemonDetailModule)
+  },
+  {
 		path: '**',
 		component: PageNotFoundComponent,
 		title: "Page not found",

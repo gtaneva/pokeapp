@@ -8,5 +8,6 @@ export const apiUrls = {
 };
 
 export enum ReducerFeatureKeys {
-	Collection = 'collection'
+	Collection = 'collection',
+	PokemonDetails = 'pokemonDetails'
 }

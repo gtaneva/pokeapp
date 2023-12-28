@@ -11,6 +11,9 @@ import { ReducerFeatureKeys } from './constants/collection.constants';
 import * as fromCollection from './store/reducers/index';
 import { EffectsModule } from '@ngrx/effects';
 import { CollectionApiEffects } from './store/effects/collection-api.effects';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 const components = [CollectionComponent, PokemonItemComponent];
 @NgModule({
@@ -23,6 +26,9 @@ const components = [CollectionComponent, PokemonItemComponent];
     NzLayoutModule,
     NzGridModule,
     NzCardModule,
+    NzTypographyModule,
+    NzListModule,
+    NzSpaceModule,
     StoreModule.forFeature(
       ReducerFeatureKeys.Collection,
       fromCollection.reducers

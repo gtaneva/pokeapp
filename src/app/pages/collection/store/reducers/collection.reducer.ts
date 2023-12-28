@@ -9,7 +9,6 @@ export interface PokemonCollectionState{
 	error?: string;
 }
 
-
 export const initialState: PokemonCollectionState = ({
 	pokeCollection: [],
 	pokemonFullDescriptionCollection: []
@@ -20,18 +19,9 @@ export const reducer = createReducer(
 	on(
 		collectionApiActions.loadPokemonsSuccess,
 		(state: PokemonCollectionState, action) => {
-			return { ...state, pokeCollection: action.pokemons.results };
+			return { ...state, pokeCollection: action.pokemons };
 		}
-	),
-	on(
-		collectionApiActions.getPokemonByNameSuccess,
-		(state: PokemonCollectionState, action) => {
-			return { 
-				...state, 
-				pokemonFullDescriptionCollection: [...state.pokemonFullDescriptionCollection, action.singlePokemonItem]
-			};
-		}
-	),
+	)
 );
 
 export const selectAll  = (state: PokemonCollectionState) => state.pokeCollection;

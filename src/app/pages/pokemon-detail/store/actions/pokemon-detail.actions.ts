@@ -1,17 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { pokemonCollection, pokemonDescription } from "../../models/collection.models";
-
-export const getPokemons = createAction('[Pokemons/API] Get Pokemons');
-
-export const loadPokemonsSuccess = createAction(
-	'[Pokemons/API] Get Pokemons Success',
-	props<{ pokemons: pokemonCollection}>()
-);
-
-export const loadPokemonsFailure = createAction(
-	'[Pokemons/API] Get Pokemons Failure',
-	(error?: string) => ({ error })
-);
+import { pokemonDescription } from "src/app/pages/collection/models/collection.models";
 
 export const getPokemonByName = createAction(
 	'[Pokemons/View Pokemon Page] Get Pokemon By Name',

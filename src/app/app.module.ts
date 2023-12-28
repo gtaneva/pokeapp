@@ -16,6 +16,7 @@ import { CollectionApiEffects } from './pages/collection/store/effects/collectio
 import { rootReducers } from './reducers';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 registerLocaleData(en);
 
@@ -30,6 +31,7 @@ registerLocaleData(en);
     StoreModule.forRoot({}, {}),
     FormsModule,
     BrowserAnimationsModule,
+    NzLayoutModule,
     StoreModule.forRoot(rootReducers, {
       runtimeChecks: {
       strictStateSerializability: true,

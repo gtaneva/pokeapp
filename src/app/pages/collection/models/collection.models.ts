@@ -5,6 +5,7 @@ export type pokemonCollection = {
     results:{
         name: string;
         url: string;
+        id?: string;
     }[]
 }
 
