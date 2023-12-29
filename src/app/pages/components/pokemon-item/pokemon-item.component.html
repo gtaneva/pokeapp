@@ -1,7 +1,8 @@
-<a routerLink="pokemon/pokemonName">Item</a>
-<nz-card nzHoverable style="width:140px" [nzCover]="coverTemplate" class="card-wrap">
-  <nz-card-meta nzTitle="{{pokemonName}}"></nz-card-meta>
-</nz-card>
-<ng-template #coverTemplate>
-  <img alt="pokemonName" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemonId}}.png" />
-</ng-template>
+<a [routerLink]="['/pokemons/', pokemonName]">
+  <nz-card nzHoverable style="width:140px" [nzCover]="coverTemplate" class="card-wrap">
+    <nz-card-meta nzTitle="{{pokemonName}}"></nz-card-meta>
+  </nz-card>
+  <ng-template #coverTemplate>
+    <img alt="pokemonName" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemonId}}.png" />
+  </ng-template>
+</a>

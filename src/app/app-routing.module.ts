@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/collection' },
-  {
-    path: "collection",
-    loadChildren: () =>
-			import('./pages/collection/collection.module').then((m) => m.CollectionModule)
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
+  { 
+    path: 'home', 
+    component: HomeComponent
   },
   {
-    path: "pokemon/:name",
+    path: "pokemons",
     loadChildren: () =>
-			import('./pages/pokemon-detail/pokemon-detail.module').then((m) => m.PokemonDetailModule)
+			import('./pages/collection/collection.module').then((m) => m.CollectionModule)
   },
   {
 		path: '**',
@@ -22,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

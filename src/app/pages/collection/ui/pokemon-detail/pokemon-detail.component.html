@@ -1,0 +1,34 @@
+<section *ngIf="pokemonDetails$ | async as pokemonDetails">
+    <nz-card class="detail-item" [nzCover]="coverTemplate" [nzActions]="[actionEdit]">
+        <nz-card-meta
+        nzTitle="{{pokemonDetails?.name}}"
+        ></nz-card-meta>
+        <div class="d-flex">
+            <p>Weight: <span class="item-size">{{pokemonDetails?.weight}}</span></p>
+            <p>Height: <span class="item-size">{{pokemonDetails?.height}}</span></p>
+        </div>
+        <div>
+            <h3 [ngStyle]="{ margin: '16px 0' }">Abilities:</h3>
+            <nz-list nzBordered nzSize="small">
+                <nz-list-item *ngFor="let item of pokemonDetails?.abilities">
+                    {{item.ability.name}}
+                </nz-list-item>
+            </nz-list>
+        </div>
+        <div>
+            <h3 [ngStyle]="{ margin: '16px 0' }">Moves:</h3>
+            <nz-list nzBordered nzSize="small" class="moves-wrap">
+                <nz-list-item *ngFor="let item of pokemonDetails?.moves">
+                    {{item.move.name}}
+                </nz-list-item>
+            </nz-list>
+        </div>
+    </nz-card>
+    <ng-template #coverTemplate>
+        <img alt="example" src="{{pokemonDetails?.sprites?.front_default}}" />
+    </ng-template>
+    <ng-template #actionEdit>
+        <span nz-icon nzType="edit"></span>
+    </ng-template>
+
+</section>

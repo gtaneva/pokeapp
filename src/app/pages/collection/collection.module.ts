@@ -14,8 +14,13 @@ import { CollectionApiEffects } from './store/effects/collection-api.effects';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { PokemonDetailComponent } from './ui/pokemon-detail/pokemon-detail.component';
+import { PokemonListComponent } from './ui/pokemon-list/pokemon-list.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzImageModule } from 'ng-zorro-antd/image';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
-const components = [CollectionComponent, PokemonItemComponent];
+const components = [CollectionComponent, PokemonItemComponent, PokemonListComponent, PokemonDetailComponent, ];
 @NgModule({
   declarations: [
     components
@@ -29,8 +34,11 @@ const components = [CollectionComponent, PokemonItemComponent];
     NzTypographyModule,
     NzListModule,
     NzSpaceModule,
+    NzIconModule,
+    NzImageModule,
+    ScrollingModule,
     StoreModule.forFeature(
-      ReducerFeatureKeys.Collection,
+      'pokemons',
       fromCollection.reducers
     ),
     EffectsModule.forFeature([CollectionApiEffects])

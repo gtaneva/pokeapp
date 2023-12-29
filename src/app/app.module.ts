@@ -12,26 +12,30 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { CollectionApiEffects } from './pages/collection/store/effects/collection-api.effects';
 import { rootReducers } from './reducers';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { HomeComponent } from './pages/home/home.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
     FormsModule,
     BrowserAnimationsModule,
     NzLayoutModule,
+    NzButtonModule,
+    NzIconModule,
     StoreModule.forRoot(rootReducers, {
       runtimeChecks: {
       strictStateSerializability: true,

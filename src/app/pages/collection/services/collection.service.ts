@@ -15,7 +15,7 @@ export class CollectionService {
 		return this.http.get<pokemonCollection>(apiUrls.getPokemons(10));
 	}
 
-  public getPokemonByName(name:string): Observable<pokemonDescription> {
+  public getPokemonByName(name:string | null): Observable<pokemonDescription> {
 		return this.http.get<pokemonDescription>(apiUrls.getSinglePokemonByName(name));
 	}
 }

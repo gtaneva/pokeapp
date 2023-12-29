@@ -5,11 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './pokemon-item.component.html',
   styleUrls: ['./pokemon-item.component.scss']
 })
-export class PokemonItemComponent implements OnInit{
+export class PokemonItemComponent{
   @Input() pokemonName: string | undefined;
   @Input() pokemonId: string | undefined;
-
-ngOnInit(): void {
-  console.log(this.pokemonName)
-}
 }

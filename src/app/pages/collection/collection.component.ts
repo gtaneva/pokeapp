@@ -12,14 +12,6 @@ import { selectAllPokemons } from './store/selectors/collection.selectors';
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.scss']
 })
-export class CollectionComponent implements OnInit{
-  public pokemonCollection$: Observable<pokemonCollection['results']> | undefined;
-
-  constructor(private store: Store<PokemonCollectionState>){}
-
-  ngOnInit(){
-    this.store.dispatch(getPokemons());
-    this.pokemonCollection$ = this.store.select(selectAllPokemons);
-  }
+export class CollectionComponent{
 
 }

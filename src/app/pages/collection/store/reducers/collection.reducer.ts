@@ -5,13 +5,11 @@ import {pokemonCollection, pokemonDescription} from '../../models/collection.mod
 
 export interface PokemonCollectionState{
 	pokeCollection: pokemonCollection['results'];
-	pokemonFullDescriptionCollection: pokemonDescription[];
 	error?: string;
 }
 
 export const initialState: PokemonCollectionState = ({
 	pokeCollection: [],
-	pokemonFullDescriptionCollection: []
 });
 
 export const reducer = createReducer(
@@ -21,7 +19,7 @@ export const reducer = createReducer(
 		(state: PokemonCollectionState, action) => {
 			return { ...state, pokeCollection: action.pokemons };
 		}
-	)
+	),
 );
 
 export const selectAll  = (state: PokemonCollectionState) => state.pokeCollection;

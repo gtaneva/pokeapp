@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
 import * as fromCollectionState from '../reducers/collection.reducer';
-import { getCollectionState, selectPokemonsState } from '../reducers';
+import { getCollectionState, selectFeature } from '../reducers';
 
 export const selectPokemonState = createSelector(
-	selectPokemonsState,
+	selectFeature,
 	getCollectionState
 );
 

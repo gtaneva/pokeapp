@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { pokemonDescription } from "src/app/pages/collection/models/collection.models";
-import { pokemonDetailActions } from "../actions";
+import { collectionApiActions } from "../actions";
 
 export interface PokemonDetailState{
 	pokemonFullDescriptionCollection: pokemonDescription[];
@@ -15,7 +15,7 @@ export const initialState: PokemonDetailState = ({
 export const reducer = createReducer(
 	initialState,
 	on(
-		pokemonDetailActions.getPokemonByNameSuccess,
+		collectionApiActions.getPokemonByNameSuccess,
 		(state: PokemonDetailState, action) => {
 			return { 
 				...state, 

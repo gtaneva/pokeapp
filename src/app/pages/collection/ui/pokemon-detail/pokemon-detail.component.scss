@@ -1,0 +1,17 @@
+@import 'src/styles/variables';
+@import 'src/styles/functions';
+.detail-item{
+    width:30%;
+    margin: 0 auto;
+}
+
+.item-size{
+    color: $primaryBrandColor;
+    font-weight: 600;
+}
+
+.moves-wrap{
+    height: calcRem(150);
+    overflow-y: auto;
+}
+

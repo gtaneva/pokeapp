@@ -29,6 +29,22 @@ export class CollectionApiEffects {
 		)
 	);
 
+	public getSinglePokemonItemByName$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(collectionApiActions.getPokemonByName),
+			switchMap((action) =>
+				this.collectionApiService.getPokemonByName(action.name).pipe(
+					map((singlePokemonItem) =>
+					collectionApiActions.getPokemonByNameSuccess({ singlePokemonItem })
+					),
+					catchError((error: HttpErrorResponse) =>
+						of(collectionApiActions.getPokemonByNameFailure(error.message))
+					)
+				)
+			)
+		)
+	);
+
 	// public editArticle$ = createEffect(() =>
 	// 	this.actions$.pipe(
 	// 		ofType(editArticle),
