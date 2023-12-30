@@ -22,6 +22,7 @@ export type pokemonDescription = {
     sprites: {
         front_default: string;
     }
+    id:string;
 }
 
 export type subDescription = {

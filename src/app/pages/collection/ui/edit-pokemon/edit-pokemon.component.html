@@ -1,0 +1,57 @@
+<section *ngIf="pokemonDetails">
+    <form nz-form>
+    <nz-card class="detail-item" [nzCover]="coverTemplate" [nzActions]="[actionSave]">
+        <nz-card-meta
+        nzTitle="{{pokemonDetails.name}}"
+        ></nz-card-meta>
+        <div>
+            <nz-form-item>
+                <nz-form-label [nzSpan]="7" nzRequired>Weight:</nz-form-label>
+                <nz-form-control [nzSpan]="12">
+                  <input nz-input name="weight" [(ngModel)]="pokemonDetails.weight"/>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSpan]="7" nzRequired>Height:</nz-form-label>
+                <nz-form-control [nzSpan]="12">
+                  <input nz-input name="height" [(ngModel)]="pokemonDetails.height"/>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div>
+            <h3 [ngStyle]="{ margin: '16px 0' }">Abilities:</h3>
+            <nz-list nzBordered nzSize="small">
+                <nz-list-item *ngFor="let item of pokemonDetails.abilities">
+                    <ul nz-list-item-actions>
+                        <nz-list-item-action>
+                          <a (click)="deleteAbilityItem(item.ability.name)"><span nz-icon nzType="delete" nzTheme="outline"></span></a>
+                        </nz-list-item-action>
+                      </ul>
+                    {{item.ability.name}}
+                </nz-list-item>
+            </nz-list>
+        </div>
+        <div>
+            <h3 [ngStyle]="{ margin: '16px 0' }">Moves:</h3>
+            <nz-list nzBordered nzSize="small" class="moves-wrap">
+                <nz-list-item *ngFor="let item of pokemonDetails.moves">
+                    <ul nz-list-item-actions>
+                        <nz-list-item-action>
+                          <a (click)="deleteMoveItem(item.move.name)"><span nz-icon nzType="delete" nzTheme="outline"></span></a>
+                        </nz-list-item-action>
+                      </ul>
+                    {{item.move.name}}
+                </nz-list-item>
+            </nz-list>
+        </div>
+    </nz-card>
+    <ng-template #coverTemplate>
+        <img alt="example" src="{{pokemonDetails.sprites.front_default}}"  />
+    </ng-template>
+    <ng-template #actionSave>
+        <button nz-button nzType="primary" (click)="saveUpdatedData()">Primary Button</button>
+    </ng-template>
+    
+</form>
+</section>

@@ -27,3 +27,8 @@ export const getPokemonByNameFailure = createAction(
 	'[Pokemons/View Pokemon Page] Get Pokemon By Name Failure',
 	(error?: string) => ({ error })
 );
+
+export const changePokemonDetails = createAction(
+	'[Pokemons/View Pokemon Page] Change Pokemon Details',
+	props<{ itemId: string | undefined, changes: Partial<pokemonDescription> }>()
+);

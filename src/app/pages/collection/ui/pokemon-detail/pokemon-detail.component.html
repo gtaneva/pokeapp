@@ -28,7 +28,7 @@
         <img alt="example" src="{{pokemonDetails?.sprites?.front_default}}" />
     </ng-template>
     <ng-template #actionEdit>
-        <span nz-icon nzType="edit"></span>
+        <a [routerLink]="['/pokemons/edit', pokemonName]"><span nz-icon nzType="edit"></span></a>
     </ng-template>
 
 </section>

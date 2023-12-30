@@ -23,6 +23,15 @@ export const reducer = createReducer(
 			};
 		}
 	),
+	on(
+		collectionApiActions.changePokemonDetails,
+		(state: PokemonDetailState, { itemId, changes }) => ({
+			...state,
+			pokemonFullDescriptionCollection: state.pokemonFullDescriptionCollection.map(item => 
+			  item.id === itemId ? { ...item, ...changes } : item
+			)
+		  }),
+	),
 );
 
 export const selectAll  = (state: PokemonDetailState) => state.pokemonFullDescriptionCollection;

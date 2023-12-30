@@ -19,11 +19,16 @@ import { PokemonListComponent } from './ui/pokemon-list/pokemon-list.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { EditPokemonComponent } from './ui/edit-pokemon/edit-pokemon.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 const components = [CollectionComponent, PokemonItemComponent, PokemonListComponent, PokemonDetailComponent, ];
 @NgModule({
   declarations: [
-    components
+    components,
+    EditPokemonComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +42,10 @@ const components = [CollectionComponent, PokemonItemComponent, PokemonListCompon
     NzIconModule,
     NzImageModule,
     ScrollingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzFormModule,
+    NzButtonModule,
     StoreModule.forFeature(
       'pokemons',
       fromCollection.reducers

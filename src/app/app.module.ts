@@ -12,7 +12,7 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { rootReducers } from './reducers';
+import { metaReducers, rootReducers } from './reducers';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -37,6 +37,7 @@ registerLocaleData(en);
     NzButtonModule,
     NzIconModule,
     StoreModule.forRoot(rootReducers, {
+      metaReducers,
       runtimeChecks: {
       strictStateSerializability: true,
       strictActionSerializability: true,
