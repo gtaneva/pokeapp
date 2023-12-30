@@ -1,6 +1,11 @@
-<h1 nz-typography class="text-center">Choose your Pokemon</h1>
-<div nz-row>
-    <div class="item-wrap" nz-col nzJustify="center" nzAlign="top" nzSpan="3" *ngFor="let item of pokemonCollection$ | async">
+<div nz-row nzJustify="center" *ngIf="!isLoading">
+    <div class="item-wrap" nz-col nzJustify="center" nzAlign="top" [nzXs]="{ span: 24 }" 
+    [nzSm]="{ span: 12 }" 
+    [nzMd]="{ span: 8 }" 
+    [nzLg]="{ span: 6 }" 
+    [nzXl]="{ span: 4 }"
+    *ngFor="let item of pokemonCollection$ | async">
         <app-pokemon-item [pokemonName]="item.name" [pokemonId]="item.id"></app-pokemon-item>
     </div>
 </div>
+<nz-spin nzSimple *ngIf="isLoading"></nz-spin>

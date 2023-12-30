@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { of, switchMap, tap } from 'rxjs';
-import { pokemonDescription } from '../../models/collection.models';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { tap } from 'rxjs';
+import { changePokemonDetails, getPokemonByName } from '../../store/actions/collection-api.actions';
 import { PokemonDetailState } from '../../store/reducers/pokemon-detail.reducer';
 import { selectPokemonByName } from '../../store/selectors/pokemon-detail.selectors';
-import { changePokemonDetails, getPokemonByName } from '../../store/actions/collection-api.actions';
+import { pokemonDescription } from '../../models/collection.models';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-edit-pokemon',
@@ -14,55 +15,79 @@ import { changePokemonDetails, getPokemonByName } from '../../store/actions/coll
 })
 export class EditPokemonComponent {
   public pokemonName: string | null;
-  public pokemonDetails:  pokemonDescription |undefined;
-  public height: number;
-  public weight: number;
+  public pokemonDetails: pokemonDescription | undefined;
 
-  constructor(private route: ActivatedRoute, private store: Store<PokemonDetailState>){}
+  constructor(private route: ActivatedRoute, 
+    private store: Store<PokemonDetailState>, 
+    private message: NzMessageService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.pokemonName = this.route.snapshot.paramMap.get('name');
-    this.getPokemonDetails();;
+    this.getPokemonDetails();
   }
 
   getPokemonDetails() {
-    this.store.select(selectPokemonByName(this.pokemonName as string)).pipe(
+    if (!this.pokemonName) {
+      return;
+    }
+    this.store.select(selectPokemonByName(this.pokemonName)).pipe(
       tap((data) => {
         if (!data) {
           this.store.dispatch(getPokemonByName({ name: this.pokemonName }));
         }
-      }),
-      switchMap((data) => of(data))
+      })
     ).subscribe({
-      next: val => this.pokemonDetails = val
-    })
-	}
-
-  deleteAbilityItem(abilityName: string){
-    this.pokemonDetails!.abilities = this.pokemonDetails!.abilities!.filter(e => e.ability.name !== abilityName);
-    console.log(this.pokemonDetails?.abilities)
+      next: (val) => {
+        this.pokemonDetails = val ? { ...val } : undefined;
+      }
+      
+    });
   }
 
-  deleteMoveItem(moveName: string){
-    const updatedMoves = this.pokemonDetails?.moves.filter(e => e.move.name !== moveName);
-    return {
+  deleteAbilityItem(abilityName: string) {
+    if (!this.pokemonDetails) {
+      return;
+    }
+
+    if (!abilityName || !this.pokemonDetails.abilities) {
+      return;
+    }
+
+    this.pokemonDetails = {
       ...this.pokemonDetails,
-      moves: updatedMoves
-    }
+      abilities: this.pokemonDetails.abilities.filter(
+        ability => ability.ability.name !== abilityName
+      )
+    };
   }
 
-  saveUpdatedData(){
-    console.log(this.pokemonDetails)
-    const updatedData = {
-      name: this.pokemonDetails?.name,
-      abilities: this.pokemonDetails?.abilities,
-      moves: this.pokemonDetails?.moves,
-      height: this.pokemonDetails?.height,
-      weight: this.pokemonDetails?.weight,
-      id: this.pokemonDetails?.id,
-      sprites: this.pokemonDetails?.sprites
+  deleteMoveItem(moveName: string) {
+    if (!this.pokemonDetails) {
+      return;
     }
 
-    this.store.dispatch(changePokemonDetails({itemId: this.pokemonDetails?.id, changes: updatedData}))
+    if (!moveName || !this.pokemonDetails.moves) {
+      return;
+    }
+
+    this.pokemonDetails = {
+      ...this.pokemonDetails,
+      moves: this.pokemonDetails.moves.filter(move => move.move.name !== moveName)
+    };
+  }
+
+  saveUpdatedData() {
+    if (!this.pokemonDetails) {
+      return;
+    }
+
+    this.store.dispatch(changePokemonDetails({
+      itemId: this.pokemonDetails.id,
+      changes: { ...this.pokemonDetails }
+    }));
+
+    this.message.create('success', `Your changes are saved!`);
+    this.router.navigate(['/pokemons', this.pokemonDetails.name])
   }
 }

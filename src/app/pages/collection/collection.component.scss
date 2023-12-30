@@ -1,4 +1,10 @@
-
+@import 'src/styles/variables';
+@import 'src/styles/functions';
 :host{
     flex: 1;
+}
+
+.main-nav{
+    background-color: $white;
+    margin-bottom: calcRem(32);
 }

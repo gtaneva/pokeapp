@@ -19,6 +19,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { HomeComponent } from './pages/home/home.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 registerLocaleData(en);
 
@@ -36,6 +38,8 @@ registerLocaleData(en);
     NzLayoutModule,
     NzButtonModule,
     NzIconModule,
+    NzTypographyModule,
+    NzGridModule,
     StoreModule.forRoot(rootReducers, {
       metaReducers,
       runtimeChecks: {

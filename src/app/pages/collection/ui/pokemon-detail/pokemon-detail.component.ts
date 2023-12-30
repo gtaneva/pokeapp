@@ -24,16 +24,6 @@ export class PokemonDetailComponent implements OnInit{
   }
 
   getPokemonDetails() {
-		// this.pokemonDetails$ = this.store.pipe(
-		// 	select(selectPokemonByName(this.pokemonName as string)),
-		// 	tap((pokemon) => {
-		// 		if (pokemon === undefined || pokemon === null) {
-		// 			this.store.dispatch(getPokemonByName({ name: this.pokemonName }));
-		// 			this.store.select(selectPokemonByName(this.pokemonName as string));
-		// 		}
-		// 	})
-		// );
-
     this.pokemonDetails$ = this.store.select(selectPokemonByName(this.pokemonName as string)).pipe(
       tap((data) => {
         if (!data) {

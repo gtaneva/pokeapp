@@ -1,0 +1,17 @@
+@import 'src/styles/functions';
+
+.text-center{
+    text-align: center;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.mb-16{
+    margin-bottom: calcRem(16);
+}
+
+.m-0{
+    margin: 0 !important;
+}
