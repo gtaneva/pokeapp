@@ -12,7 +12,7 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { metaReducers, rootReducers } from './reducers';
+import { metaReducers } from './reducers';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -21,6 +21,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { reducers } from './pages/collection/store/reducers';
 
 registerLocaleData(en);
 
@@ -40,7 +41,7 @@ registerLocaleData(en);
     NzIconModule,
     NzTypographyModule,
     NzGridModule,
-    StoreModule.forRoot(rootReducers, {
+    StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
       strictStateSerializability: true,
@@ -52,7 +53,7 @@ registerLocaleData(en);
     EffectsModule.forRoot(),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
-      name: 'NgRx Demo App'
+      name: 'Pokemon App'
     })
   ],
   providers: [

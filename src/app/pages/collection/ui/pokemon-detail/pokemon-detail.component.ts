@@ -4,7 +4,7 @@ import { Observable, of, switchMap, take, tap } from 'rxjs';
 import { pokemonDescription } from '../../models/collection.models';
 import { Store, select } from '@ngrx/store';
 import { PokemonDetailState } from '../../store/reducers/pokemon-detail.reducer';
-import { selectAllPokemonsWithDetails, selectPokemonByName } from '../../store/selectors/pokemon-detail.selectors';
+import { selectAllPokemonsWithDetails, selectPokemonByName, selectPokemonByNameError } from '../../store/selectors/pokemon-detail.selectors';
 import { getPokemonByName } from '../../store/actions/collection-api.actions';
 
 @Component({
@@ -15,6 +15,7 @@ import { getPokemonByName } from '../../store/actions/collection-api.actions';
 export class PokemonDetailComponent implements OnInit{
   public pokemonName: string | null;
   public pokemonDetails$:  Observable<pokemonDescription | undefined>;
+  public error$: Observable<string | undefined>;
 
   constructor(private route: ActivatedRoute, private store: Store<PokemonDetailState>){}
 
@@ -31,6 +32,7 @@ export class PokemonDetailComponent implements OnInit{
         }
       }),
       switchMap((data) => of(data))
-    )
+    );
+    this.error$ = this.store.select(selectPokemonByNameError);
 	}
 }

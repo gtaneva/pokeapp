@@ -4,7 +4,7 @@ import { pokemonCollection } from '../../models/collection.models';
 import { PokemonCollectionState } from '../../store/reducers/collection.reducer';
 import { Store } from '@ngrx/store';
 import { getPokemons } from '../../store/actions/collection-api.actions';
-import { selectAllPokemons } from '../../store/selectors/collection.selectors';
+import { selectAllPokemons, selectError } from '../../store/selectors/collection.selectors';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -13,8 +13,7 @@ import { selectAllPokemons } from '../../store/selectors/collection.selectors';
 })
 export class PokemonListComponent {
   public pokemonCollection$: Observable<pokemonCollection['results']> | undefined;
-  public isLoading: boolean = false;
-
+  public error$: Observable<string | undefined>;
   constructor(private store: Store<PokemonCollectionState>){}
 
   ngOnInit(){
@@ -29,6 +28,7 @@ export class PokemonListComponent {
         }
       }),
       switchMap((data) => of(data))
-    )
+    );
+    this.error$ = this.store.select(selectError);
   }
 }

@@ -1,5 +1,3 @@
-
-
 export const baseApiUrl: string = 'https://pokeapi.co/api/v2';
 
 export const apiUrls = {

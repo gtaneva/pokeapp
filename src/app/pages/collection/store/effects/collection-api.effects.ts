@@ -45,31 +45,6 @@ export class CollectionApiEffects {
 		)
 	);
 
-	// public editArticle$ = createEffect(() =>
-	// 	this.actions$.pipe(
-	// 		ofType(editArticle),
-	// 		switchMap((action) =>
-	// 			this.articlesApiService
-	// 				.updateSingleArticle(action.id, action.article)
-	// 				.pipe(
-	// 					map((action) =>
-	// 						articlesApiActions.editArticleSuccess({
-	// 							id: action.data.id,
-	// 							changes: action.data,
-	// 						})
-	// 					),
-	// 					catchError((error) =>
-	// 						of(
-	// 							articlesApiActions.editArticleFailure({
-	// 								error: error.message,
-	// 							})
-	// 						)
-	// 					)
-	// 				)
-	// 		)
-	// 	)
-	// );
-
 	public constructor(
 		protected actions$: Actions,
 		protected collectionApiService: CollectionService

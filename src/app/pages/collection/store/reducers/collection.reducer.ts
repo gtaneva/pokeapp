@@ -20,6 +20,12 @@ export const reducer = createReducer(
 			return { ...state, pokeCollection: action.pokemons };
 		}
 	),
+	on(
+		collectionApiActions.loadPokemonsFailure,
+		(state: PokemonCollectionState, action) => {
+			return { ...state, error: action.error };
+		}
+	),
 );
 
 export const selectAll  = (state: PokemonCollectionState) => state.pokeCollection;

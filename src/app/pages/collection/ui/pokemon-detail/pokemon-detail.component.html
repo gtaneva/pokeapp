@@ -38,3 +38,6 @@
     </ng-template>
 
 </section>
+<div *ngIf="error$ | async as errorMessage">
+    {{errorMessage}}
+</div>

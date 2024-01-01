@@ -1,4 +1,4 @@
-<div nz-row nzJustify="center" *ngIf="!isLoading">
+<div nz-row nzJustify="center">
     <div class="item-wrap" nz-col nzJustify="center" nzAlign="top" [nzXs]="{ span: 24 }" 
     [nzSm]="{ span: 12 }" 
     [nzMd]="{ span: 8 }" 
@@ -8,4 +8,6 @@
         <app-pokemon-item [pokemonName]="item.name" [pokemonId]="item.id"></app-pokemon-item>
     </div>
 </div>
-<nz-spin nzSimple *ngIf="isLoading"></nz-spin>
+<div *ngIf="error$ | async as errorMessage">
+    {{errorMessage}}
+</div>

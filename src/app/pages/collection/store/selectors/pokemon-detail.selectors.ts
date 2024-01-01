@@ -16,3 +16,9 @@ export const selectPokemonByName = (params: string) =>
 	createSelector(selectAllPokemonsWithDetails, (pokemons) =>
 		pokemons.find((pokemon) => pokemon.name === params)
 );
+
+
+export const selectPokemonByNameError = createSelector(
+	selectPokemonDetailedState,
+	state => state.error
+  )

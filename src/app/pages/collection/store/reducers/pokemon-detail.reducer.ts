@@ -6,8 +6,6 @@ export interface PokemonDetailState{
 	pokemonFullDescriptionCollection: pokemonDescription[];
 	error?: string;
 }
-
-
 export const initialState: PokemonDetailState = ({
 	pokemonFullDescriptionCollection: []
 });
@@ -30,6 +28,13 @@ export const reducer = createReducer(
 			pokemonFullDescriptionCollection: state.pokemonFullDescriptionCollection.map(item => 
 			  item.id === itemId ? { ...item, ...changes } : item
 			)
+		  }),
+	),
+	on(
+		collectionApiActions.getPokemonByNameFailure,
+		(state: PokemonDetailState, action) => ({
+			...state,
+			error: action.error
 		  }),
 	),
 );
